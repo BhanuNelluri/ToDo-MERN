@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Container } from '@material-ui/core';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import MyDay from './components/Myday/myday';
@@ -9,10 +9,17 @@ import Important from './components/Important/Important';
 import Tasks from './components/Tasks/tasks';
 import taskForm from './components/Form/taskForm';
 import Notification from '../src/Notifications/Notification';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getTasks } from './actions/tasks';
 
 const App = () => {
     const user = JSON.parse(localStorage.getItem('profile'));
+    const dispatch = useDispatch();
+    const id = user?.result._id;
+    useEffect(() => {
+        dispatch(getTasks(id));
+    }, [dispatch]);
+
     const alert = useSelector(state => state.alerts);
     return (
         <div>

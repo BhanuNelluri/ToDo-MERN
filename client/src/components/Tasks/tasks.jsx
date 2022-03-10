@@ -36,7 +36,7 @@ const Tasks = () => {
               </Grid>
              {isLoading ? <div><CircularProgress /></div> : 
                 <div>
-                    {tasks && tasks.tasks.filter((task)=>task.Completed === false).sort(handleSorting('newest')).map((task) => (
+                    {tasks && tasks.filter((task)=>task.Completed === false).sort(handleSorting('newest')).map((task) => (
                              <Paper  key={task._id} style={{ padding: '10px', borderRadius: '15px', marginBottom: '10px' }} elevation={6}>
                            <Grid container  alignItems="center"  >
                              <Grid item xs={2} sm={1} md={1}   container justify = "center">
@@ -58,7 +58,7 @@ const Tasks = () => {
                 <Typography style={{  marginBottom: '10px',textAllign: 'center' }} variant="h5" component="h3">Completed Tasks</Typography>
                 {isLoading ? <div><CircularProgress /></div> : (
                 <div>
-                    {tasks && tasks.tasks.filter((task)=>task.Completed === true).sort(handleSorting('newest')).map((task) => (
+                    {tasks && tasks.filter((task)=>task.Completed === true).sort(handleSorting('newest')).map((task) => (
                              <Paper  key={task._id} style={{ padding: '10px', borderRadius: '15px', marginBottom: '10px',textDecorationColor:'red',textDecorationLine:'line-through' }} elevation={6}>
                              <Grid container  alignItems="center"  >
                              <Grid item xs={2} sm={1} md={1}   container justify = "center">

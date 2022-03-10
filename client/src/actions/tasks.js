@@ -8,8 +8,9 @@ import { success, alerterror } from './alerts';
 export const getTasks = (id) => async (dispatch) => {
     try {
         dispatch({ type: START_LOADING });
-        const { data } = await api.fetchTasks(id);
-        const action = { type: FETCH_ALL, payload:  data };
+        const {data } = await api.fetchTasks(id);
+        console.log(data);
+        const action = { type: FETCH_ALL, payload: {data} };
         console.log(action.payload);
         dispatch(action);
         dispatch({ type: END_LOADING });
@@ -20,22 +21,25 @@ export const getTasks = (id) => async (dispatch) => {
 
 export const createTask = (taskData,history) => async (dispatch) => {
     try {
-        dispatch({ type: START_LOADING });
+        // dispatch({ type: START_LOADING });
         const { data } = await api.createTask(taskData);
-        const action = { type: CREATE, payload: data };
+        const action = { type: CREATE, payload: {data} };
         dispatch(action);
-        dispatch({ type: END_LOADING });
         dispatch(success(`Task Added Succesfully`));
+        // dispatch({ type: END_LOADING });
+
     } catch (error) {
         console.log(error);
-        dispatch(alerterror(`${error.message}`));
+        // dispatch(alerterror(`${error.message}`));
     }
 }
 
 export const updateTask = (task) => async (dispatch) => {
     try {
+        // dispatch({ type: START_LOADING });
         const { data } = await api.updateTask(task);
         dispatch({ type: UPDATE, payload: data });
+        // dispatch({ type: END_LOADING });
     } catch (error) {
         console.log(error);
     }

@@ -24,9 +24,8 @@ const Form = () => {
         } 
     }
     const clear = () => {
-        setTaskData({ todo:'' })
-        history.push('/myday')
-        window.location.reload();
+        setTaskData({ todo:'' });
+        history.push('/myday');
     }
 
     return (

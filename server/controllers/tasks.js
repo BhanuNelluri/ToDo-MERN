@@ -14,7 +14,6 @@ export const getAllTasks = async (req, res) => {
 
 
 export const createTask = async (req, res) => {
-    console.log(req.userId);
     const task = req.body;
     const id = req.userId;
     try {

@@ -11,12 +11,14 @@ export default  (state = { isLoading: true, tasks: [] }, action) => {
         case FETCH_ALL:
             return {
                 ...state,
-                tasks: action.payload,
+                tasks: action.payload.data.tasks,
             }
+            
         case DELETE:
             return { ...state, tasks: state.tasks.filter((task) => task._id !== action.payload) };
         case CREATE:
-            return { ...state, tasks: [...state.tasks, action.payload] };
+            return {  ...state,
+                tasks: action.payload.data.tasks, };
         case UPDATE:
             return { ...state, tasks: state.tasks.map((post) => post._id === action.payload._id ? action.payload : post) };
         default:

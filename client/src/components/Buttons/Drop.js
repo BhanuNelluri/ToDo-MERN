@@ -8,10 +8,13 @@ import { useDispatch} from 'react-redux';
 import { deleteTask, updateTask } from '../../actions/tasks';
 import moment from 'moment';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import useSound from 'use-sound';
+import boopSfx from '../../sounds/boop.mp3';
 
 const ITEM_HEIGHT = 48;
 
 export default function LongMenu({task}) {
+  const [play] = useSound(boopSfx);
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -19,18 +22,17 @@ export default function LongMenu({task}) {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
+    play();
     setAnchorEl(null);
   };
   const ClickDelete = ()=>{
      dispatch(deleteTask(task._id));
      handleClose();
-     window.location.reload();
   };
   const ClickImportant = ()=>{
     task.Important = !task.Important;
     dispatch(updateTask(task));
     handleClose();
-    window.location.reload();
   };
 
   return (
