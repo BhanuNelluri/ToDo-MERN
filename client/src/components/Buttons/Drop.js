@@ -22,16 +22,17 @@ export default function LongMenu({task}) {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    play();
     setAnchorEl(null);
   };
   const ClickDelete = ()=>{
      dispatch(deleteTask(task._id));
+    play();
      handleClose();
   };
   const ClickImportant = ()=>{
     task.Important = !task.Important;
     dispatch(updateTask(task));
+    play();
     handleClose();
   };
 
