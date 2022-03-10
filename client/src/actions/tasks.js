@@ -37,8 +37,9 @@ export const createTask = (taskData,history) => async (dispatch) => {
 export const updateTask = (task) => async (dispatch) => {
     try {
         // dispatch({ type: START_LOADING });
-        const { data } = await api.updateTask(task);
-        dispatch({ type: UPDATE, payload: data });
+         dispatch({ type: UPDATE, payload: task });
+         await api.updateTask(task);
+        
         // dispatch({ type: END_LOADING });
     } catch (error) {
         console.log(error);
@@ -57,8 +58,8 @@ export const updateTask = (task) => async (dispatch) => {
 
 export const deleteTask = (id) => async (dispatch) => {
     try {
-        await api.deleteTask(id);
         dispatch({ type: DELETE, payload: id })
+        await api.deleteTask(id);
     } catch (error) {
         console.log(error);
     }
